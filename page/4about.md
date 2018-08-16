@@ -10,8 +10,7 @@ icon: heart
 
 ## 关于我
 
-
-![Luna](../img/about-luna.jpg "luna" "width:150px")
+<img src="../img/about-luna.jpg" width="150" height="150">
 
 
 在校本科生一枚，就读于哈理工电气工程学院，热爱计算机与编程，正在努力学习C++。
@@ -23,7 +22,7 @@ icon: heart
 * GitHub：[Cirnoo](https://github.com/Cirnoo)
 * email：9@7at.me
 * 知乎：[月亮](https://www.zhihu.com/people/yue-liang-78-7)
-* QQ : [9@7at.me](http://t.cn/RDgDHsb)
+* QQ : [9@7at.me](http://t.cn/RDeWZJH)
 
 
 ## 关于本站
