@@ -9,10 +9,10 @@ excerpt: MySQL初学小练习
 
 这几天在学MySQL，整理了学校发的练习题，记录在这里。
 
-### 原始数据
+###  原始数据
 
-```SQL
-use `0818`; #database is '0818'
+```sql
+use `0818`; -- database is '0818'
 create table Student(Snum varchar(10),Sname nvarchar(10),Sage datetime,Ssex nvarchar(10));
 insert into Student values('01' , N'赵雷' , '1990-01-01' , N'男');
 insert into Student values('02' , N'钱电' , '1990-12-21' , N'男');
@@ -52,9 +52,9 @@ insert into SC values('07' , '03' , 98);
 insert into SC values('09' , '03' , 98);
 ```
 
-### 习题与题解
-```SQL
-#1、查询"01"课程比"02"课程成绩高的学生的信息及课程分数
+###  习题与题解
+```sql
+-- 1、查询"01"课程比"02"课程成绩高的学生的信息及课程分数
 
 use `0818`;
 select student.*,sc1.score score1,sc2.score score2 from student
@@ -62,87 +62,87 @@ inner join sc sc1 on sc1.snum=student.snum and sc1.cnum='01'
 left join sc sc2 on sc2.snum=student.snum and sc2.cnum='02'
 where sc1.score > ifnull(sc2.score,-1);
 
-#1.1、查询同时存在"01"课程和"02"课程的情况
+-- 1.1、查询同时存在"01"课程和"02"课程的情况
 
 select student.*,sc1.score score1,sc2.score score2 from student
 inner join sc sc1 on sc1.snum=student.snum and sc1.cnum='01'
 inner join sc sc2 on sc2.snum=student.snum and sc2.cnum='02';
 
-#2、存在"01"课程但可能不存在"02"课程的情况(不存在时显示为null)(以下存在相同内容时不再解释)
+-- 2、存在"01"课程但可能不存在"02"课程的情况(不存在时显示为null)(以下存在相同内容时不再解释)
 
 select student.*,sc1.score score1,sc2.score score2 from student
 inner join sc sc1 on sc1.snum=student.snum and sc1.cnum='01'
 left join sc sc2 on sc2.snum=student.snum and sc2.cnum='02';
 
 
-#3、查询平均成绩大于等于60分的同学的学生编号和学生姓名和平均成绩
+-- 3、查询平均成绩大于等于60分的同学的学生编号和学生姓名和平均成绩
 
 select student.snum,student.Sname,avg(score) from student
 left join sc on sc.Snum=student.Snum
 group by student.Snum having avg(score)>60;
 
-#4.1、查询在sc表存在成绩的学生信息的SQL语句。
+-- 4.1、查询在sc表存在成绩的学生信息的SQL语句。
 
 select student.* from student
 left join sc on sc.snum=student.Snum
 group by Sname having count(Cnum)>0;
 
-#4.2、查询在sc表中不存在成绩的学生信息的SQL语句。
+-- 4.2、查询在sc表中不存在成绩的学生信息的SQL语句。
 
 select student.* from student
 left join sc on sc.snum=student.Snum
 group by Sname having count(Cnum)=0;
 
-#5、查询"李"姓老师的数量 
+-- 5、查询"李"姓老师的数量 
 
 select * from teacher where Tname like '李%';
 
-#6、查询学过"张三"老师授课的同学的信息 
+-- 6、查询学过"张三"老师授课的同学的信息 
 
 select student.* from student 
 left join sc on sc.Snum=student.Snum
 left join teacher on teacher.tnum=sc.Cnum
 group by student.Snum having Tname='张三';
 
-##或者可以这样
+-- -- 或者可以这样
  select tnum from teacher where tname = '张三';
  select cnum from course where tnum = ( select tnum from teacher where tname = '张三');
  select snum from sc where cnum = ( select cnum from course where tnum = ( select tnum from teacher where tname = '张三'));
  select * from student where snum in(select snum from sc where cnum = ( select cnum from course where tnum = ( select tnum from teacher where tname = '张三')));
  
-#8、查询没学过"张三"老师授课的同学的信息 
+-- 8、查询没学过"张三"老师授课的同学的信息 
 
- select * from student where Snum not in  #in 后面接一张表，可以查询是否在表中
+ select * from student where Snum not in  -- in 后面接一张表，可以查询是否在表中
  (select s.snum from teacher t
  inner join course c   on t.Tnum = c.Tnum
  inner join sc     on c.Cnum = sc.Cnum
  inner join student s  on sc.Snum = s.Snum
  where tname = '张三');
  
-#9、查询学过编号为"01"并且也学过编号为"02"的课程的同学的信息
+-- 9、查询学过编号为"01"并且也学过编号为"02"的课程的同学的信息
 
 select * from student where snum in
 (select sc.Snum from sc where Cnum='01') and snum in
 (select sc.Snum from sc where Cnum='02');
 
-#10、查询学过编号为"01"但是没有学过编号为"02"的课程的同学的信息
+-- 10、查询学过编号为"01"但是没有学过编号为"02"的课程的同学的信息
 
 select * from student where snum in
 (select sc.Snum from sc where Cnum='01') and snum not in
 (select sc.Snum from sc where Cnum='02');
 
-#11、查询没有学全所有课程的同学的信息 
+-- 11、查询没有学全所有课程的同学的信息 
 
 select * from student where snum in 
 (select sc.Snum from sc group by Snum having count(cnum)<(select count(cnum) from course));
 
-#12、查询至少有一门课与学号为"01"的同学所学相同的同学的信息 
+-- 12、查询至少有一门课与学号为"01"的同学所学相同的同学的信息 
 
 select * from student where snum in (select snum from sc where cnum in
 (select cnum from sc where snum='01') and snum!='01'
 group by snum);
 
-#13、查询和"01"号的同学学习的课程完全相同的其他同学的信息 XX
+-- 13、查询和"01"号的同学学习的课程完全相同的其他同学的信息 XX
 
 select * from student where snum in
  (select snum from (select sc.* from 
@@ -150,11 +150,11 @@ select * from student where snum in
 left join sc on sc.cnum=a.cnum and sc.snum!='01') b 
 group by b.snum having count(b.cnum)=count((select count(sc.Cnum) from sc where snum='01')));
 
-#14、查询没学过"张三"老师讲授的任一门课程的学生姓名 
+-- 14、查询没学过"张三"老师讲授的任一门课程的学生姓名 
 
-#见#8
+-- 见-- 8
 
-#15、查询两门及其以上不及格课程的同学的学号，姓名及其平均成绩 
+-- 15、查询两门及其以上不及格课程的同学的学号，姓名及其平均成绩 
 
 select  sname,s.snum,avg(score) from sc 
 inner join student s  on s.snum = sc.snum

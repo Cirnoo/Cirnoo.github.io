@@ -35,6 +35,7 @@ description_footer: 月亮酱的心路历程
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 
 kramdown:
   input: GFM
