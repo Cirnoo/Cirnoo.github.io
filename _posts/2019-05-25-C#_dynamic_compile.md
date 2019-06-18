@@ -2,8 +2,8 @@
 layout: post
 title:  "C#动态编译"
 date:   2019-05-25 
-categories: 实习 C#
-tags: unity
+categories: 实习
+tags: unity C#
 excerpt: 在unity中使用C#动态编译
 ---
 
