@@ -3,7 +3,7 @@ layout: post
 title:  "二叉树复习"
 date:   2019-6-28 
 categories: 笔记
-tags: C++
+tags: C++ 数据结构
 excerpt: 复习下二叉树
 ---
 
