@@ -2,7 +2,7 @@
 layout: post
 title:  "STL源码剖析 笔记 allocator"
 date:   2018-12-24 
-categories: 读书笔记
+categories: 笔记
 tags: C++ STL
 excerpt: 源码面前，了无秘密
 ---
