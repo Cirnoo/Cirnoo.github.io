@@ -7,6 +7,9 @@ tags: C++ 笔记
 excerpt: 重新组织你的函数
 ---
 
+* content
+{:toc}
+
 ### Extract Method
 
 * 创造一个新函数,根据这个函数的意图来对它命名
@@ -62,3 +65,4 @@ int GetReating()
 	return (_numberOfLaterDeliveries > 5) ? 2 : 1;
 }
 ```
+
