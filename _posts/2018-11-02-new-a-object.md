@@ -2,7 +2,7 @@
 layout: post
 title:  "如何new一个对象"
 date:   2018-11-02 
-categories: 学习笔记
+categories: 笔记
 tags: C++
 excerpt: MyObject * object = new MyObject(); 的过程中发生了什么？
 ---

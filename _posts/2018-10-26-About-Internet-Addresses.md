@@ -2,7 +2,7 @@
 layout: post
 title:  "在浏览器中输入一个网址后发生了什么"
 date:   2018-10-26 
-categories: 学习笔记
+categories: 笔记
 tags: HTTP 面试
 excerpt: 经典面试题
 ---
