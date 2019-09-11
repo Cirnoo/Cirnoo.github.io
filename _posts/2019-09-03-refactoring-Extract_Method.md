@@ -66,3 +66,51 @@ int GetReating()
 }
 ```
 
+### 引入解释型变量
+
+如果一个表达式比较复杂，考虑将该复杂表达式(或其中一部分)的结果放进一个临时变量,以此变量名称来解释表达式用途。
+
+表达式有可能非常复杂而难以阅读.这种情况下,临时变量可以帮助你将表达式分解为比较容易管理的形式.  
+
+```cpp
+double Price()
+{
+	return _quantity * _itemPrice - max(0, _quantity - 500) * _itemPrice * 0.05 +
+		min(_quantity * _itemPrice * 0.1, 100.0);
+}
+```
+
+```cpp
+double Price()
+{
+	const double basePrice = _quantity * _itemPrice;
+	return basePrice - max(0, _quantity - 500) * _itemPrice * 0.05 +
+		min(basePrice * 0.1, 100.0);
+}
+
+```
+
+接下来提炼批发折扣
+```cpp
+double Price()
+{
+	const double basePrice = _quantity * _itemPrice;
+	const double quantityDiscount = max(0, _quantity - 500) * _itemPrice * 0.05;
+	return basePrice - quantityDiscount +
+		min(basePrice * 0.1, 100.0);
+}
+```
+
+最后还可以提炼运费，整个函数表达就清晰了
+
+```cpp
+double Price()
+{
+	const double basePrice = _quantity * _itemPrice;
+	const double quantityDiscount = max(0, _quantity - 500) * _itemPrice * 0.05;
+	const double shipping = min(basePrice * 0.1, 100.0);
+	return basePrice - quantityDiscount + shipping;
+		
+}
+```
+
