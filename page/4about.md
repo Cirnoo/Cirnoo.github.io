@@ -14,8 +14,9 @@ icon: heart
 
 
 在校本科生一枚，就读于哈理工电气工程学院，热爱计算机与编程，正在努力学习C++。
-
-
+2019.1~2019.6 网易游戏雷火工作室实习 游戏客户端开发
+2019.12~2020.4 阿里手机淘宝 安卓客户端开发
+预计 2020.7 本科毕业
 
 ## 联系我
 
@@ -30,5 +31,4 @@ icon: heart
 本主题原作者HyG
 
 **若您想使用这个 jekyll 博客主题，请访问：[https://github.com/Gaohaoyang/gaohaoyang.github.io](https://github.com/Gaohaoyang/gaohaoyang.github.io)**
-
 
